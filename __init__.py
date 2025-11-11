@@ -43,6 +43,8 @@ from .py.power_primitive import RgthreePowerPrimitive
 from .py.image_or_latent_size import RgthreeImageOrLatentSize
 from .py.image_resize import RgthreeImageResize
 from .py.power_puter import RgthreePowerPuter
+from .py.fast_groups_muter import FastGroupsMuter
+from .py.fast_groups_bypasser import FastGroupsBypasser
 
 NODE_CLASS_MAPPINGS = {
   RgthreeBigContext.NAME: RgthreeBigContext,
@@ -69,6 +71,8 @@ NODE_CLASS_MAPPINGS = {
   RgthreeImageOrLatentSize.NAME: RgthreeImageOrLatentSize,
   RgthreeImageResize.NAME: RgthreeImageResize,
   RgthreePowerPuter.NAME: RgthreePowerPuter,
+  FastGroupsMuter.NAME: FastGroupsMuter,
+  FastGroupsBypasser.NAME: FastGroupsBypasser,
 }
 
 if get_config_value('unreleased.dynamic_context.enabled') is True:
