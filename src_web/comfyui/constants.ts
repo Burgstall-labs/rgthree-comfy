@@ -27,6 +27,8 @@ export const NodeTypesString = {
   FAST_BYPASSER: addRgthree("Fast Bypasser"),
   FAST_GROUPS_MUTER: addRgthree("Fast Groups Muter"),
   FAST_GROUPS_BYPASSER: addRgthree("Fast Groups Bypasser"),
+  FAST_GROUPS_MUTER_REMOTE: addRgthree("Fast Groups Muter Remote"),
+  FAST_GROUPS_BYPASSER_REMOTE: addRgthree("Fast Groups Bypasser Remote"),
   FAST_ACTIONS_BUTTON: addRgthree("Fast Actions Button"),
   LABEL: addRgthree("Label"),
   POWER_PRIMITIVE: addRgthree("Power Primitive"),
