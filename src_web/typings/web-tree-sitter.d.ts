@@ -1,1 +1,1 @@
-import 'web-tree-sitter';
+import "web-tree-sitter";

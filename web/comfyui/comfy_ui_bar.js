@@ -1,10 +1,10 @@
-import { app } from "../../scripts/app.js";
-import { iconGear, iconStarFilled, logoRgthreeAsync } from "../../rgthree/common/media/svgs.js";
-import { $el, empty } from "../../rgthree/common/utils_dom.js";
+import { app } from "scripts/app.js";
+import { iconGear, iconStarFilled, logoRgthreeAsync } from "rgthree/common/media/svgs.js";
+import { $el, empty } from "rgthree/common/utils_dom.js";
 import { SERVICE as BOOKMARKS_SERVICE } from "./services/bookmarks_services.js";
 import { SERVICE as CONFIG_SERVICE } from "./services/config_service.js";
 import { RgthreeConfigDialog } from "./config.js";
-import { wait } from "../../rgthree/common/shared_utils.js";
+import { wait } from "rgthree/common/shared_utils.js";
 let rgthreeButtonGroup = null;
 function addRgthreeTopBarButtons() {
     var _a, _b, _c;

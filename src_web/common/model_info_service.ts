@@ -84,7 +84,7 @@ abstract class BaseModelInfoService extends EventTarget {
  */
 class LoraInfoService extends BaseModelInfoService {
   protected override readonly apiRefreshEventString = "rgthree-refreshed-loras-info";
-  protected override readonly modelInfoType = 'loras';
+  protected override readonly modelInfoType = "loras";
 }
 
 /**
@@ -92,7 +92,7 @@ class LoraInfoService extends BaseModelInfoService {
  */
 class CheckpointInfoService extends BaseModelInfoService {
   protected override readonly apiRefreshEventString = "rgthree-refreshed-checkpoints-info";
-  protected override readonly modelInfoType = 'checkpoints';
+  protected override readonly modelInfoType = "checkpoints";
 }
 
 export const LORA_INFO_SERVICE = new LoraInfoService();

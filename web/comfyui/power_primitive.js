@@ -1,8 +1,8 @@
-import { app } from "../../scripts/app.js";
+import { app } from "scripts/app.js";
 import { RgthreeBaseServerNode } from "./base_node.js";
 import { NodeTypesString } from "./constants.js";
-import { ComfyWidgets } from "../../scripts/widgets.js";
-import { moveArrayItem } from "../../rgthree/common/shared_utils.js";
+import { ComfyWidgets } from "scripts/widgets.js";
+import { moveArrayItem } from "rgthree/common/shared_utils.js";
 const PROPERTY_HIDE_TYPE_SELECTOR = "hideTypeSelector";
 const PRIMITIVES = {
     STRING: "STRING",
@@ -13,7 +13,7 @@ const PRIMITIVES = {
 class RgthreePowerPrimitive extends RgthreeBaseServerNode {
     constructor(title = NODE_CLASS.title) {
         super(title);
-        this.typeState = '';
+        this.typeState = "";
         this.properties[PROPERTY_HIDE_TYPE_SELECTOR] = false;
     }
     static setUp(comfyClass, nodeData) {
@@ -26,8 +26,8 @@ class RgthreePowerPrimitive extends RgthreeBaseServerNode {
     }
     configure(info) {
         super.configure(info);
-        if (this.outputTypeWidget.value === 'BOOL') {
-            this.outputTypeWidget.value = 'BOOLEAN';
+        if (this.outputTypeWidget.value === "BOOL") {
+            this.outputTypeWidget.value = "BOOLEAN";
         }
         setTimeout(() => {
             this.setTypedData();

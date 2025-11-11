@@ -1,4 +1,3 @@
-
 .rgthree-dialog {
   outline: 0;
   border: 0;
@@ -16,7 +15,9 @@
   padding: 0;
   max-height: calc(100% - 32px);
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
 }
@@ -126,4 +127,3 @@
 body.rgthree-dialog-open > *:not(.rgthree-dialog):not(.rgthree-top-messages-container) {
   filter: blur(5px);
 }
-

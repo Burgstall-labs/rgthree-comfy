@@ -3,9 +3,9 @@
  * added here mostly because @comfyorg/comfyui-frontend-types hasn't exported them oir they weren't
  * available.
  */
-import type {SerializedGraph} from './index.js';
+import type {SerializedGraph} from "./index.js";
 
-export type getPngMetadata = (file: File | Blob) => { workflow?: string; prompt?: string };
+export type getPngMetadata = (file: File | Blob) => {workflow?: string; prompt?: string};
 export type getWebpMetadata = (file: File | Blob) => {
   Workflow?: string;
   workflow?: string;
@@ -48,36 +48,33 @@ export type getWebpMetadata = (file: File | Blob) => {
 // }
 
 // export interface SerializedGraph {
-  // config: any;
-  // extra: any;
-  // groups: any;
-  // last_link_id: number;
-  // last_node_id: number;
-  // links: SerializedLink[];
-  // nodes: SerializedNode[];
+// config: any;
+// extra: any;
+// groups: any;
+// last_link_id: number;
+// last_node_id: number;
+// links: SerializedLink[];
+// nodes: SerializedNode[];
 // }
-
 
 /**
  * ComfyUI-Frontend defines a ComfyNodeDef from Zod, but doesn't expose it. This is a shim.
  */
 export type ComfyNodeDef = {
-	name: string;
-	display_name?: string;
-	description?: string;
-	category: string;
-	input?: {
-		required?: Record<string, [string | any[]] | [string | any[], any]>;
-		optional?: Record<string, [string | any[]] | [string | any[], any]>;
-		hidden?: Record<string, [string | any[]] | [string | any[], any]>;
-	};
-	output?: string[];
-	output_name: string[];
-	// @rgthree
-	output_node?: boolean;
+  name: string;
+  display_name?: string;
+  description?: string;
+  category: string;
+  input?: {
+    required?: Record<string, [string | any[]] | [string | any[], any]>;
+    optional?: Record<string, [string | any[]] | [string | any[], any]>;
+    hidden?: Record<string, [string | any[]] | [string | any[], any]>;
+  };
+  output?: string[];
+  output_name: string[];
+  // @rgthree
+  output_node?: boolean;
 };
-
-
 
 // Below are types derived from the formats for the ComfyAPI.
 
@@ -87,27 +84,26 @@ type ComfyApiInputLink = [
   string,
   /** The output index. */
   number,
-]
-
+];
 
 type ComfyApiFormatNode = {
-  "inputs": {
-    [input_name: string]: string|number|boolean|ComfyApiInputLink,
-  },
-  "class_type": string,
-  "_meta": {
-    "title": string,
-  }
-}
+  inputs: {
+    [input_name: string]: string | number | boolean | ComfyApiInputLink;
+  };
+  class_type: string;
+  _meta: {
+    title: string;
+  };
+};
 
 export type ComfyApiFormat = {
-  [node_id: string]: ComfyApiFormatNode
-}
+  [node_id: string]: ComfyApiFormatNode;
+};
 
 export type ComfyApiPrompt = {
-  workflow: SerializedGraph,
-  output: ComfyApiFormat,
-}
+  workflow: SerializedGraph;
+  output: ComfyApiFormat;
+};
 
 export type ComfyApiEventDetailStatus = {
   exec_info: {
@@ -148,6 +144,6 @@ export type ComfyApiEventDetailError = {
   node_id: string;
   traceback: string;
   executed: any[];
-  current_inputs:  {[key: string]: (number[]|string[])};
-  current_outputs: {[key: string]: (number[]|string[])};
-}
+  current_inputs: {[key: string]: number[] | string[]};
+  current_outputs: {[key: string]: number[] | string[]};
+};

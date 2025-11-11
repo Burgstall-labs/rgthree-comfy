@@ -5,7 +5,7 @@
  * Tests are not bundled by default, to test build with "--with-tests" and then invoke from the
  * dev console like `rgthree_tests.TestDescribeLabel()`. The output is in the test itself.
  */
-import { wait } from "rgthree/common/shared_utils.js";
+import {wait} from "rgthree/common/shared_utils.js";
 
 declare global {
   interface Window {
@@ -14,7 +14,6 @@ declare global {
     };
   }
 }
-
 
 window.rgthree_tests = window.rgthree_tests || {};
 
@@ -26,10 +25,10 @@ type TestContext = {
 let contexts: TestContext[] = [];
 
 export function describe(label: string, fn: Function) {
-  if (!label.startsWith('Test')) {
+  if (!label.startsWith("Test")) {
     throw new Error('Test labels should start with "Test"');
   }
-   window.rgthree_tests[label] = async () => {
+  window.rgthree_tests[label] = async () => {
     await describeRun(label, fn);
   };
   return window.rgthree_tests[label];
@@ -37,7 +36,7 @@ export function describe(label: string, fn: Function) {
 
 export async function describeRun(label: string, fn: Function) {
   await wait();
-  contexts.push({ label });
+  contexts.push({label});
   console.group(`[Start] ${contexts[contexts.length - 1]!.label}`);
   await fn();
   contexts.pop();

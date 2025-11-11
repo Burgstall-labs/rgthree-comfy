@@ -67,9 +67,7 @@ export class RgthreeDialog extends EventTarget {
         }
     }
     setTitle(content) {
-        const title = typeof content !== "string" || content.includes("<h2")
-            ? content
-            : $el("h2", { html: content });
+        const title = typeof content !== "string" || content.includes("<h2") ? content : $el("h2", { html: content });
         setAttributes(this.titleElement, { children: title });
     }
     setContent(content) {

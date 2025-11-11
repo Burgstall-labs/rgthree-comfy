@@ -1,4 +1,4 @@
-import { app } from "../../scripts/app.js";
+import { app } from "scripts/app.js";
 import { RgthreeBaseVirtualNode } from "./base_node.js";
 import { NodeTypesString } from "./constants.js";
 import { SERVICE as FAST_GROUPS_SERVICE } from "./services/fast_groups_service.js";
@@ -305,7 +305,7 @@ export class FastGroupsMuter extends BaseFastGroupsModeChanger {
 FastGroupsMuter.type = NodeTypesString.FAST_GROUPS_MUTER;
 FastGroupsMuter.title = NodeTypesString.FAST_GROUPS_MUTER;
 FastGroupsMuter.exposedActions = ["Bypass all", "Enable all", "Toggle all"];
-class FastGroupsToggleRowWidget extends RgthreeBaseWidget {
+export class FastGroupsToggleRowWidget extends RgthreeBaseWidget {
     constructor(group, node) {
         super("RGTHREE_TOGGLE_AND_NAV");
         this.value = { toggled: false };
@@ -332,7 +332,7 @@ class FastGroupsToggleRowWidget extends RgthreeBaseWidget {
                 newValue = this.node.widgets.every((w) => !w.value || w === this);
             }
         }
-        changeModeOfNodes(getGroupNodes(this.group), (newValue ? this.node.modeOn : this.node.modeOff));
+        changeModeOfNodes(getGroupNodes(this.group), newValue ? this.node.modeOn : this.node.modeOff);
         this.group.rgthree_hasAnyActiveNode = newValue;
         this.toggled = newValue;
         (_d = this.group.graph) === null || _d === void 0 ? void 0 : _d.setDirtyCanvas(true, false);

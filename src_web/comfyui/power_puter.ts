@@ -1,9 +1,4 @@
-import type {
-  LGraphNode,
-  IWidget,
-  Vector2,
-  CanvasMouseEvent,
-} from "@comfyorg/frontend";
+import type {LGraphNode, IWidget, Vector2, CanvasMouseEvent} from "@comfyorg/frontend";
 import type {ComfyNodeDef} from "typings/comfy.js";
 
 import {app} from "scripts/app.js";

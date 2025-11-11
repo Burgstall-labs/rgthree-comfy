@@ -202,7 +202,7 @@ class RgthreeApi {
    * A way to log to the terminal from JS.
    */
   print(messageType: string) {
-    this.fetchApi(`/print?type=${messageType}`, {})
+    this.fetchApi(`/print?type=${messageType}`, {});
   }
 }
 

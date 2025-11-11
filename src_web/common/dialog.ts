@@ -1,5 +1,5 @@
-import type { LGraphNode, LGraphNodeConstructor } from "@comfyorg/frontend";
-import { createElement as $el, getClosestOrSelf, setAttributes } from "./utils_dom.js";
+import type {LGraphNode, LGraphNodeConstructor} from "@comfyorg/frontend";
+import {createElement as $el, getClosestOrSelf, setAttributes} from "./utils_dom.js";
 
 type RgthreeDialogButton = {
   label: string;
@@ -63,12 +63,12 @@ export class RgthreeDialog extends EventTarget {
       children: !options.title
         ? null
         : options.title instanceof Element || Array.isArray(options.title)
-        ? options.title
-        : typeof options.title === "string"
-        ? !options.title.includes("<h2")
-          ? $el("h2", { html: options.title })
-          : options.title
-        : options.title,
+          ? options.title
+          : typeof options.title === "string"
+            ? !options.title.includes("<h2")
+              ? $el("h2", {html: options.title})
+              : options.title
+            : options.title,
     });
 
     this.contentElement = $el("div.rgthree-dialog-container-content", {
@@ -76,7 +76,7 @@ export class RgthreeDialog extends EventTarget {
       child: options.content,
     });
 
-    const footerEl = $el("footer.rgthree-dialog-container-footer", { parent: container });
+    const footerEl = $el("footer.rgthree-dialog-container-footer", {parent: container});
     for (const button of options.buttons || []) {
       $el("button", {
         text: button.label,
@@ -107,14 +107,12 @@ export class RgthreeDialog extends EventTarget {
 
   setTitle(content: string | HTMLElement | HTMLElement[]) {
     const title =
-      typeof content !== "string" || content.includes("<h2")
-        ? content
-        : $el("h2", { html: content });
-    setAttributes(this.titleElement, { children: title });
+      typeof content !== "string" || content.includes("<h2") ? content : $el("h2", {html: content});
+    setAttributes(this.titleElement, {children: title});
   }
 
   setContent(content: string | HTMLElement | HTMLElement[]) {
-    setAttributes(this.contentElement, { children: content });
+    setAttributes(this.contentElement, {children: content});
   }
 
   show() {
@@ -137,8 +135,8 @@ export class RgthreeDialog extends EventTarget {
     this.dispatchEvent(new CustomEvent("close", this.getCloseEventDetail()));
   }
 
-  protected getCloseEventDetail(): { detail: any } {
-    return { detail: null };
+  protected getCloseEventDetail(): {detail: any} {
+    return {detail: null};
   }
 }
 

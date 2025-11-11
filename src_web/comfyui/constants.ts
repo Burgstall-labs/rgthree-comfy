@@ -56,7 +56,6 @@ const UNRELEASED_KEYS = {
   [NodeTypesString.POWER_CONDUCTOR]: "power_conductor",
 };
 
-
 /**
  * Gets the list of nodes from NoteTypeString above, filtering any that are not applicable.
  */
@@ -66,7 +65,7 @@ export function getNodeTypeStrings() {
     .map((i) => stripRgthree(i))
     .filter((i) => {
       if (unreleasedKeys.includes(i)) {
-        return !!CONFIG_SERVICE.getConfigValue(`unreleased.${UNRELEASED_KEYS[i]}.enabled`)
+        return !!CONFIG_SERVICE.getConfigValue(`unreleased.${UNRELEASED_KEYS[i]}.enabled`);
       }
       return true;
     })

@@ -9,9 +9,9 @@ import type {
   ComfyApiFormat,
   ComfyApiPrompt,
 } from "typings/comfy.js";
-import { api } from "scripts/api.js";
-import type { LGraph as TLGraph, LGraphCanvas as TLGraphCanvas } from "@comfyorg/frontend";
-import { Resolver, getResolver } from "./shared_utils.js";
+import {api} from "scripts/api.js";
+import type {LGraph as TLGraph, LGraphCanvas as TLGraphCanvas} from "@comfyorg/frontend";
+import {Resolver, getResolver} from "./shared_utils.js";
 
 /**
  * Wraps general data of a prompt's execution.
@@ -80,7 +80,7 @@ export class PromptExecution {
       if (this.currentlyExecuting != null) {
         this.executedNodeIds.push(nodeId);
       }
-      this.currentlyExecuting = { nodeId, nodeLabel: this.getNodeLabel(nodeId), pass: 0 };
+      this.currentlyExecuting = {nodeId, nodeLabel: this.getNodeLabel(nodeId), pass: 0};
       // We'll see if we're known node for multiple passes, that will come in as generic 'progress'
       // updates from the api. If we're known to have multiple passes, then we'll pre-set data to
       // allow the progress bar to handle intial rendering. If we're not, that's OK, the data will
@@ -152,7 +152,7 @@ class PromptService extends EventTarget {
         response = await queuePrompt.apply(api, [...arguments]);
       } catch (e) {
         const promptExecution = that.getOrMakePrompt("error");
-        promptExecution.error({ exception_type: "Unknown." });
+        promptExecution.error({exception_type: "Unknown."});
         // console.log("ERROR QUEUE PROMPT", response, arguments);
         throw e;
       }

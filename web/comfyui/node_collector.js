@@ -1,7 +1,7 @@
-import { app } from "../../scripts/app.js";
+import { app } from "scripts/app.js";
 import { addConnectionLayoutSupport } from "./utils.js";
-import { wait } from "../../rgthree/common/shared_utils.js";
-import { ComfyWidgets } from "../../scripts/widgets.js";
+import { wait } from "rgthree/common/shared_utils.js";
+import { ComfyWidgets } from "scripts/widgets.js";
 import { BaseCollectorNode } from "./base_node_collector.js";
 import { NodeTypesString } from "./constants.js";
 class CollectorNode extends BaseCollectorNode {
@@ -57,7 +57,7 @@ async function updateCombinerToCollector(node) {
         newNode.size = [...node.size];
         newNode.properties = { ...node.properties };
         const links = [];
-        const graph = (node.graph || app.graph);
+        const graph = node.graph || app.graph;
         for (const [index, output] of node.outputs.entries()) {
             for (const linkId of output.links || []) {
                 const link = graph.links[linkId];

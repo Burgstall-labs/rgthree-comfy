@@ -1,10 +1,10 @@
-import { RgthreeDialog } from "../../rgthree/common/dialog.js";
-import { createElement as $el, empty, appendChildren, getClosestOrSelf, query, queryAll, setAttributes, } from "../../rgthree/common/utils_dom.js";
-import { logoCivitai, link, pencilColored, diskColored, dotdotdot, } from "../../rgthree/common/media/svgs.js";
-import { CHECKPOINT_INFO_SERVICE, LORA_INFO_SERVICE } from "../../rgthree/common/model_info_service.js";
+import { RgthreeDialog } from "rgthree/common/dialog.js";
+import { createElement as $el, empty, appendChildren, getClosestOrSelf, query, queryAll, setAttributes, } from "rgthree/common/utils_dom.js";
+import { logoCivitai, link, pencilColored, diskColored, dotdotdot, } from "rgthree/common/media/svgs.js";
+import { CHECKPOINT_INFO_SERVICE, LORA_INFO_SERVICE } from "rgthree/common/model_info_service.js";
 import { rgthree } from "./rgthree.js";
-import { MenuButton } from "../../rgthree/common/menu.js";
-import { generateId, injectCss } from "../../rgthree/common/shared_utils.js";
+import { MenuButton } from "rgthree/common/menu.js";
+import { generateId, injectCss } from "rgthree/common/shared_utils.js";
 class RgthreeInfoDialog extends RgthreeDialog {
     constructor(file) {
         const dialogOptions = {
@@ -166,7 +166,7 @@ class RgthreeInfoDialog extends RgthreeDialog {
 
       <ul class="rgthree-info-images">${(_y = (_x = info.images) === null || _x === void 0 ? void 0 : _x.map((img) => `
         <li>
-          <figure>${img.type === 'video'
+          <figure>${img.type === "video"
             ? `<video src="${img.url}" autoplay loop></video>`
             : `<img src="${img.url}" />`}
             <figcaption><!--

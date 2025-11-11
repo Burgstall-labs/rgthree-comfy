@@ -3,18 +3,21 @@
   <head>
     <title>rgthree's comfy: Workflow Link Fixer</title>
     <style>
-      html, body {
+      html,
+      body {
       }
       html {
         font-size: 100%;
         overflow-y: scroll;
         -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
-        box-sizing: border-box
+        box-sizing: border-box;
       }
 
-      *, *:before, *:after {
-        box-sizing: inherit
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
       }
 
       body {
@@ -28,7 +31,9 @@
         display: flex;
       }
 
-      .box, figure, picture {
+      .box,
+      figure,
+      picture {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -38,8 +43,8 @@
         margin: 32px auto;
         max-width: 720px;
         padding: 16px 16px 32px;
-        background: rgba(125,125,125,0.33);
-        box-shadow: 0px 8px 10px rgba(0,0,0,0.85);
+        background: rgba(125, 125, 125, 0.33);
+        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.85);
         border-radius: 8px;
       }
       h1 {
@@ -49,12 +54,12 @@
         text-align: center;
       }
       .box > p {
-        margin: 0 0 .6em;
+        margin: 0 0 0.6em;
         text-align: left;
         line-height: 1.25;
       }
       .box > small {
-        margin: 0 0 .6em;
+        margin: 0 0 0.6em;
         text-align: left;
         line-height: 1.25;
         opacity: 0.75;
@@ -64,11 +69,10 @@
         display: block;
         height: 256px;
         min-width: 256px;
-        border: 10px dashed rgba(125,125,125,0.66);
+        border: 10px dashed rgba(125, 125, 125, 0.66);
         border-radius: 32px;
         object-fit: contain;
         pointer-events: none;
-
       }
       figcaption {
         opacity: 0.66;
@@ -84,7 +88,7 @@
       .output {
         margin: 8px 8px 32px;
         border-radius: 4px;
-        border: 1px solid rgba(125,125,125,0.66);
+        border: 1px solid rgba(125, 125, 125, 0.66);
         padding: 4px 8px;
         min-width: 80%;
       }
@@ -101,11 +105,9 @@
       .-has-fixable-results .btn-fix {
         display: inline-block;
       }
-
     </style>
   </head>
   <body>
-
     <div class="box">
       <h1>rgthree's Workflow Link Fixer</h1>
       <p>
@@ -115,8 +117,8 @@
       <small>
         Sometimes as you have complex workflows the internal data can become corrupt, and the
         ComfyUI doesn't always understand or display correctly. Maybe links disappear, or reconnect
-        to another node when changing something. Load it here to detect and, if possible, attempt
-        to fix it (sometimes, however, fixing it just isn't feasible, so fingers crossed).
+        to another node when changing something. Load it here to detect and, if possible, attempt to
+        fix it (sometimes, however, fixing it just isn't feasible, so fingers crossed).
       </small>
 
       <figure>
@@ -129,11 +131,10 @@
       <div class="output"></div>
 
       <button class="btn-fix">Fix & Save new workflow</button>
-
     </div>
 
     <script type="module">
-      import {LinkPage} from './link_page.js';
+      import {LinkPage} from "./link_page.js";
       new LinkPage();
     </script>
   </body>

@@ -1,9 +1,12 @@
-
 <template>
   <div class="rgthree-model-info-card">
     <figure class="rgthree-model-info-card-media-container">
-      <video if="images.0 && images.0.type == 'video'" bind="images.0.url:src" loop autoplay></video>
-      <img if="images.0 && images.0.type != 'video'" bind="images.0.url:src"  loading="lazy" />
+      <video
+        if="images.0 && images.0.type == 'video'"
+        bind="images.0.url:src"
+        loop
+        autoplay></video>
+      <img if="images.0 && images.0.type != 'video'" bind="images.0.url:src" loading="lazy" />
     </figure>
     <div class="rgthree-model-info-card-data-container">
       <div bind="name:text"></div>
@@ -15,4 +18,3 @@
     </div>
   </div>
 </template>
-

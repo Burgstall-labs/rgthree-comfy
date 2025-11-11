@@ -1,7 +1,5 @@
-
 .rgthree-lora-chooser-dialog {
   max-width: 100%;
-
 
   .rgthree-dialog-container-title {
     display: flex;
@@ -25,7 +23,10 @@
   }
 
   .rgthree-lora-filters-container {
-    svg {width: 16px; height: 16px;}
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   .rgthree-dialog-container-content {
@@ -36,8 +37,10 @@
   .rgthree-button-reset {
     width: 32px;
     height: 32px;
-    > svg {width: 100%; height: 100%;}
-
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   ul.rgthree-lora-chooser-list {
@@ -76,7 +79,7 @@
         width: 48px;
         height: 48px;
         border-radius: 4px;
-        border: 1px solid rgba(120,120,120,1);
+        border: 1px solid rgba(120, 120, 120, 1);
         opacity: 0;
         transition: opacity 0.15s ease-in-out;
 
@@ -89,25 +92,38 @@
             width: 100%;
             height: 100%;
             box-shadow: inset 100px 100px #fff;
-            clip-path: polygon(40.13% 68.39%, 23.05% 51.31%, 17.83% 48.26%, 12.61% 49.57%, 9.57% 53.04%, 8% 60%, 34.13% 85.87%, 39.82% 89.57%, 45.88% 86.73%, 90.66% 32.39%, 88.92% 26.1%, 83.03% 22.17%, 76.94% 22.62%)
+            clip-path: polygon(
+              40.13% 68.39%,
+              23.05% 51.31%,
+              17.83% 48.26%,
+              12.61% 49.57%,
+              9.57% 53.04%,
+              8% 60%,
+              34.13% 85.87%,
+              39.82% 89.57%,
+              45.88% 86.73%,
+              90.66% 32.39%,
+              88.92% 26.1%,
+              83.03% 22.17%,
+              76.94% 22.62%
+            );
           }
         }
       }
-
 
       figure {
         position: relative;
         display: block;
         margin: 0 0 8px;
         padding: 0;
-        border: 1px solid rgba(120, 120, 120, .8);
-        background: rgba(120, 120, 120, .5);
+        border: 1px solid rgba(120, 120, 120, 0.8);
+        background: rgba(120, 120, 120, 0.5);
         width: 100%;
         padding-top: 120%;
         transition: box-shadow 0.15s ease-in-out;
         opacity: 0.75;
         &::after {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
           inset: 0;
@@ -115,8 +131,8 @@
 
         &:empty {
           &::before {
-            content: 'No image.';
-            color: rgba(200, 200, 200, .8);
+            content: "No image.";
+            color: rgba(200, 200, 200, 0.8);
             position: absolute;
             display: block;
             inset: 0;
@@ -128,7 +144,8 @@
           }
         }
 
-        > img, > video {
+        > img,
+        > video {
           position: absolute;
           width: 100%;
           height: 100%;
@@ -143,19 +160,22 @@
         opacity: 0.75;
       }
 
-      &:hover figure::after{
-        box-shadow: 0px 2px 6px rgba(0,0,0,0.75);
+      &:hover figure::after {
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.75);
       }
       :checked ~ figure::after {
-        box-shadow: 0 0 5px #fff, 0px 0px 15px rgba(49, 131, 255, 0.88), inset 0 0 3px #fff, inset 0px 0px 5px rgba(49, 131, 255, 0.88)
+        box-shadow:
+          0 0 5px #fff,
+          0px 0px 15px rgba(49, 131, 255, 0.88),
+          inset 0 0 3px #fff,
+          inset 0px 0px 5px rgba(49, 131, 255, 0.88);
       }
 
       &:hover *,
       &:hover input[type="checkbox"],
       :checked ~ * {
-        opacity: 1
+        opacity: 1;
       }
-
     }
   }
 }

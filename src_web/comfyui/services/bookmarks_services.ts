@@ -11,11 +11,15 @@ class BookmarksService {
    * Gets a list of the current bookmarks within the current workflow.
    */
   getCurrentBookmarks(): Bookmark[] {
-    return reduceNodesDepthFirst<Bookmark[]>(app.graph.nodes, (n, acc) => {
-      if (n.type === NodeTypesString.BOOKMARK) {
-        acc.push(n as Bookmark);
-      }
-    }, []).sort((a, b) => a.title.localeCompare(b.title));
+    return reduceNodesDepthFirst<Bookmark[]>(
+      app.graph.nodes,
+      (n, acc) => {
+        if (n.type === NodeTypesString.BOOKMARK) {
+          acc.push(n as Bookmark);
+        }
+      },
+      [],
+    ).sort((a, b) => a.title.localeCompare(b.title));
   }
 
   getExistingShortcuts() {

@@ -67,9 +67,9 @@ class RgthreeSeed extends RgthreeBaseServerNode {
   }
 
   override onPropertyChanged(prop: string, value: unknown, prevValue?: unknown): boolean {
-    if (prop === 'randomMax') {
+    if (prop === "randomMax") {
       this.properties["randomMax"] = Math.min(1125899906842624, Number(value as number));
-    } else if (prop === 'randomMin') {
+    } else if (prop === "randomMin") {
       this.properties["randomMin"] = Math.max(-1125899906842624, Number(value as number));
     }
     return true;
@@ -147,8 +147,8 @@ class RgthreeSeed extends RgthreeBaseServerNode {
 
   generateRandomSeed() {
     let step = this.seedWidget.options.step || 1;
-    const randomMin = Number(this.properties['randomMin'] || 0);
-    const randomMax = Number(this.properties['randomMax'] || 1125899906842624);
+    const randomMin = Number(this.properties["randomMin"] || 0);
+    const randomMax = Number(this.properties["randomMax"] || 1125899906842624);
     const randomRange = (randomMax - randomMin) / (step / 10);
     let seed = Math.floor(Math.random() * randomRange) * (step / 10) + randomMin;
     if (SPECIAL_SEEDS.includes(seed)) {

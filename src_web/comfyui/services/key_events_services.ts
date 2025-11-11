@@ -3,8 +3,8 @@
  * nodes and other services to confidently determine what's going on.
  */
 class KeyEventService extends EventTarget {
-  readonly downKeys: { [key: string]: boolean } = {};
-  readonly shiftDownKeys: { [key: string]: boolean } = {};
+  readonly downKeys: {[key: string]: boolean} = {};
+  readonly shiftDownKeys: {[key: string]: boolean} = {};
 
   ctrlKey = false;
   altKey = false;
@@ -62,8 +62,10 @@ class KeyEventService extends EventTarget {
   handleKeyDownOrUp(e: KeyboardEvent) {
     const key = e.key.toLocaleUpperCase();
     // If we're already down, or already up, then ignore and don't fire.
-    if ((e.type === 'keydown' && this.downKeys[key] === true)
-        || (e.type === 'keyup' && this.downKeys[key] === undefined)) {
+    if (
+      (e.type === "keydown" && this.downKeys[key] === true) ||
+      (e.type === "keyup" && this.downKeys[key] === undefined)
+    ) {
       return;
     }
 
@@ -73,11 +75,11 @@ class KeyEventService extends EventTarget {
     this.shiftKey = !!e.shiftKey;
     if (e.type === "keydown") {
       this.downKeys[key] = true;
-      this.dispatchCustomEvent("keydown", { originalEvent: e });
+      this.dispatchCustomEvent("keydown", {originalEvent: e});
 
       // If SHIFT is pressed down as well, then we need to keep track of this separetly to "release"
       // it once SHIFT is also released.
-      if (this.shiftKey && key !== 'SHIFT') {
+      if (this.shiftKey && key !== "SHIFT") {
         this.shiftDownKeys[key] = true;
       }
     } else if (e.type === "keyup") {
@@ -94,15 +96,14 @@ class KeyEventService extends EventTarget {
 
       // If we're releasing the SHIFT key, then we may also be releasing all other keys we pressed
       // during the SHIFT key as well. We should get an additional keydown for them after.
-      if (key === 'SHIFT') {
+      if (key === "SHIFT") {
         for (const key in this.shiftDownKeys) {
           delete this.downKeys[key];
           delete this.shiftDownKeys[key];
         }
       }
-      this.dispatchCustomEvent("keyup", { originalEvent: e });
+      this.dispatchCustomEvent("keyup", {originalEvent: e});
     }
-
   }
 
   private clearKeydowns() {
@@ -118,7 +119,7 @@ class KeyEventService extends EventTarget {
    */
   private dispatchCustomEvent(event: string, detail?: any) {
     if (detail != null) {
-      return this.dispatchEvent(new CustomEvent(event, { detail }));
+      return this.dispatchEvent(new CustomEvent(event, {detail}));
     }
     return this.dispatchEvent(new CustomEvent(event));
   }

@@ -1,5 +1,5 @@
-import { app } from "../../scripts/app.js";
-import { ComfyWidgets } from "../../scripts/widgets.js";
+import { app } from "scripts/app.js";
+import { ComfyWidgets } from "scripts/widgets.js";
 import { RgthreeBaseServerNode } from "./base_node.js";
 import { rgthree } from "./rgthree.js";
 import { addConnectionLayoutSupport } from "./utils.js";
@@ -23,10 +23,10 @@ class RgthreeSeed extends RgthreeBaseServerNode {
         rgthree.addEventListener("comfy-api-queue-prompt-before", this.handleApiHijackingBound);
     }
     onPropertyChanged(prop, value, prevValue) {
-        if (prop === 'randomMax') {
+        if (prop === "randomMax") {
             this.properties["randomMax"] = Math.min(1125899906842624, Number(value));
         }
-        else if (prop === 'randomMin') {
+        else if (prop === "randomMin") {
             this.properties["randomMin"] = Math.max(-1125899906842624, Number(value));
         }
         return true;
@@ -78,8 +78,8 @@ class RgthreeSeed extends RgthreeBaseServerNode {
     }
     generateRandomSeed() {
         let step = this.seedWidget.options.step || 1;
-        const randomMin = Number(this.properties['randomMin'] || 0);
-        const randomMax = Number(this.properties['randomMax'] || 1125899906842624);
+        const randomMin = Number(this.properties["randomMin"] || 0);
+        const randomMax = Number(this.properties["randomMax"] || 1125899906842624);
         const randomRange = (randomMax - randomMin) / (step / 10);
         let seed = Math.floor(Math.random() * randomRange) * (step / 10) + randomMin;
         if (SPECIAL_SEEDS.includes(seed)) {

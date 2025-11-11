@@ -2,8 +2,8 @@
  * Progress bar web component.
  */
 
-import { SERVICE as PROMPT_SERVICE, type PromptExecution } from "rgthree/common/prompt_service.js";
-import { createElement } from "./utils_dom.js";
+import {SERVICE as PROMPT_SERVICE, type PromptExecution} from "rgthree/common/prompt_service.js";
+import {createElement} from "./utils_dom.js";
 
 /**
  * The progress bar web component.
@@ -37,7 +37,7 @@ export class RgthreeProgressBar extends HTMLElement {
     super();
   }
 
-  private onProgressUpdate(e: CustomEvent<{ queue: number; prompt: PromptExecution }>) {
+  private onProgressUpdate(e: CustomEvent<{queue: number; prompt: PromptExecution}>) {
     if (!this.connected) return;
 
     const prompt = e.detail.prompt;
@@ -122,7 +122,7 @@ export class RgthreeProgressBar extends HTMLElement {
       return;
     }
 
-    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow = this.attachShadow({mode: "open"});
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(`
 
@@ -200,10 +200,10 @@ export class RgthreeProgressBar extends HTMLElement {
     `);
     this.shadow.adoptedStyleSheets = [sheet];
 
-    const overlayEl = createElement(`div.overlay[part="overlay"]`, { parent: this.shadow });
-    this.progressNodesEl = createElement(`div.bar[part="progress-nodes"]`, { parent: this.shadow });
-    this.progressStepsEl = createElement(`div.bar[part="progress-steps"]`, { parent: this.shadow });
-    this.progressTextEl = createElement(`span[part="text"]`, { text: "Idle", parent: this.shadow });
+    const overlayEl = createElement(`div.overlay[part="overlay"]`, {parent: this.shadow});
+    this.progressNodesEl = createElement(`div.bar[part="progress-nodes"]`, {parent: this.shadow});
+    this.progressStepsEl = createElement(`div.bar[part="progress-steps"]`, {parent: this.shadow});
+    this.progressTextEl = createElement(`span[part="text"]`, {text: "Idle", parent: this.shadow});
   }
 
   disconnectedCallback() {

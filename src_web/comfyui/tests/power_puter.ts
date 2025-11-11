@@ -8,11 +8,11 @@ const env = new ComfyUITestEnvironment();
 
 function setPowerPuterValue(node: LGraphNode, outputType: string, value: string) {
   // Strip as much whitespace on first non-empty line from all lines.
-  if (value.includes('\n')) {
-    value = value.replace(/^\n/gm, '')
+  if (value.includes("\n")) {
+    value = value.replace(/^\n/gm, "");
     const strip = value.match(/^(.*?)\S/)?.[1]?.length;
     if (strip) {
-      value = value.replace(new RegExp(`^.{${strip}}`, 'mg'), '')
+      value = value.replace(new RegExp(`^.{${strip}}`, "mg"), "");
     }
   }
   node.widgets![1]!.value = value;

@@ -1,5 +1,5 @@
 import type {LGraphNode} from "@comfyorg/frontend";
-import { RgthreeBaseNode } from "./base_node";
+import {RgthreeBaseNode} from "./base_node";
 
 /** Removes all inputs from the end. */
 export function removeUnusedInputsFromEnd(node: LGraphNode, minNumber = 1, nameMatch?: RegExp) {

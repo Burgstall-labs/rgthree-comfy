@@ -1,9 +1,9 @@
 import {app} from "scripts/app.js";
-import { RgthreeDialog, RgthreeDialogOptions } from "rgthree/common/dialog.js";
-import { createElement as $el, queryAll as $$ } from "rgthree/common/utils_dom.js";
-import { checkmark, logoRgthree } from "rgthree/common/media/svgs.js";
-import { LogLevel, rgthree } from "./rgthree.js";
-import { SERVICE as CONFIG_SERVICE } from "./services/config_service.js";
+import {RgthreeDialog, RgthreeDialogOptions} from "rgthree/common/dialog.js";
+import {createElement as $el, queryAll as $$} from "rgthree/common/utils_dom.js";
+import {checkmark, logoRgthree} from "rgthree/common/media/svgs.js";
+import {LogLevel, rgthree} from "./rgthree.js";
+import {SERVICE as CONFIG_SERVICE} from "./services/config_service.js";
 
 /** Types of config used as a hint for the form handling. */
 enum ConfigType {
@@ -31,7 +31,7 @@ type ConfigurationSchema = {
   key: string;
   type: ConfigType;
   label: string;
-  inputType?: ConfigInputType,
+  inputType?: ConfigInputType;
   options?: string[] | number[] | ConfigurationSchemaOption[];
   description?: string;
   subconfig?: ConfigurationSchema[];
@@ -39,12 +39,12 @@ type ConfigurationSchema = {
   onSave?: (value: any) => void;
 };
 
-type ConfigurationSchemaOption = { value: any; label: string };
+type ConfigurationSchemaOption = {value: any; label: string};
 
 /**
  * A static schema of sorts to layout options found in the config.
  */
-const CONFIGURABLE: { [key: string]: ConfigurationSchema[] } = {
+const CONFIGURABLE: {[key: string]: ConfigurationSchema[]} = {
   features: [
     {
       key: "features.progress_bar.enabled",
@@ -128,9 +128,9 @@ const CONFIGURABLE: { [key: string]: ConfigurationSchema[] } = {
           label: "Which toggles to show.",
           inputType: ConfigInputType.CHECKLIST,
           options: [
-            { value: "queue", label: "queue" },
-            { value: "bypass", label: "bypass" },
-            { value: "mute", label: "mute" },
+            {value: "queue", label: "queue"},
+            {value: "bypass", label: "bypass"},
+            {value: "mute", label: "mute"},
           ],
         },
         {
@@ -138,8 +138,8 @@ const CONFIGURABLE: { [key: string]: ConfigurationSchema[] } = {
           type: ConfigType.STRING,
           label: "When to show them.",
           options: [
-            { value: "hover", label: "on hover" },
-            { value: "always", label: "always" },
+            {value: "hover", label: "on hover"},
+            {value: "always", label: "always"},
           ],
         },
       ],
@@ -199,7 +199,7 @@ function fieldrow(item: ConfigurationSchema) {
   $el(`label[for="${item.key}"]`, {
     children: [
       $el(`span[text="${item.label}"]`),
-      item.description ? $el("small", { html: item.description }) : null,
+      item.description ? $el("small", {html: item.description}) : null,
     ],
     parent: container,
   });
@@ -223,8 +223,8 @@ function fieldrow(item: ConfigurationSchema) {
               $el<HTMLInputElement>(`label`, {
                 for: id,
                 text: label,
-              })
-            ]
+              }),
+            ],
           });
         }),
       });
@@ -234,10 +234,10 @@ function fieldrow(item: ConfigurationSchema) {
         children: item.options.map((o) => {
           const label = (o as ConfigurationSchemaOption).label || String(o);
           const value = (o as ConfigurationSchemaOption).value || o;
-          const valueSerialized = JSON.stringify({ value: value });
+          const valueSerialized = JSON.stringify({value: value});
           return $el<HTMLOptionElement>(`option[value="${valueSerialized}"]`, {
             text: label,
-            selected: valueSerialized === JSON.stringify({ value: initialValue }),
+            selected: valueSerialized === JSON.stringify({value: initialValue}),
           });
         }),
       });
@@ -254,7 +254,7 @@ function fieldrow(item: ConfigurationSchema) {
       value: initialValue,
     });
   }
-  $el("div.fieldrow-value", { children: [input], parent: container });
+  $el("div.fieldrow-value", {children: [input], parent: container});
   return container;
 }
 
@@ -329,7 +329,7 @@ export class RgthreeConfigDialog extends RgthreeDialog {
   }
 
   private static buildFieldset(datas: ConfigurationSchema[], label: string) {
-    const fieldset = $el(`fieldset`, { children: [$el(`legend[text="${label}"]`)] });
+    const fieldset = $el(`fieldset`, {children: [$el(`legend[text="${label}"]`)]});
     for (const data of datas) {
       if (data.isDevOnly && !rgthree.isDevMode()) {
         continue;
@@ -348,11 +348,14 @@ export class RgthreeConfigDialog extends RgthreeDialog {
   }
 
   getChangedFormData() {
-    return $$("[data-name]", this.contentElement).reduce((acc: { [key: string]: any }, el) => {
+    return $$("[data-name]", this.contentElement).reduce((acc: {[key: string]: any}, el) => {
       const name = el.dataset["name"]!;
       const type = el.dataset["type"]!;
       const initialValue = CONFIG_SERVICE.getConfigValue(name);
-      let currentValueEl = $$("fieldset.rgthree-checklist-group, input, textarea, select", el)[0] as HTMLInputElement;
+      let currentValueEl = $$(
+        "fieldset.rgthree-checklist-group, input, textarea, select",
+        el,
+      )[0] as HTMLInputElement;
       let currentValue: any = null;
       if (type === String(ConfigType.BOOLEAN)) {
         currentValue = currentValueEl.checked;
@@ -362,7 +365,7 @@ export class RgthreeConfigDialog extends RgthreeDialog {
         currentValue = currentValueEl?.value;
         if (currentValueEl.nodeName === "SELECT") {
           currentValue = JSON.parse(currentValue).value;
-        } else if (currentValueEl.classList.contains('rgthree-checklist-group')) {
+        } else if (currentValueEl.classList.contains("rgthree-checklist-group")) {
           currentValue = [];
           for (const check of $$<HTMLInputElement>('input[type="checkbox"]', currentValueEl)) {
             if (check.checked) {

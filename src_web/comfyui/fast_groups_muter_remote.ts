@@ -9,7 +9,11 @@ import type {
 import {app} from "scripts/app.js";
 import {NodeTypesString} from "./constants.js";
 import {SERVICE as FAST_GROUPS_SERVICE} from "./services/fast_groups_service.js";
-import { changeModeOfNodes, getGroupNodes, getConnectedInputNodesAndFilterPassThroughs } from "./utils.js";
+import {
+  changeModeOfNodes,
+  getGroupNodes,
+  getConnectedInputNodesAndFilterPassThroughs,
+} from "./utils.js";
 import {rgthree} from "./rgthree.js";
 import {BaseFastGroupsModeChanger} from "./fast_groups_muter.js";
 
@@ -42,13 +46,18 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
 
   override onConstructed(): boolean {
     this.addOutput("OPT_CONNECTION", "*");
-    this.refreshInputs();
+    // Don't refresh inputs here - wait until onAdded when we're registered with the service
     return super.onConstructed();
   }
 
   override onAdded(graph: TLGraph): void {
     FAST_GROUPS_SERVICE.addFastGroupNode(this);
     super.onAdded(graph);
+    // Refresh inputs after being added to the graph and registered with the service
+    // Use a delay to ensure groups are available (service schedules refresh after 8ms, but groups may need more time)
+    setTimeout(() => {
+      this.refreshInputs();
+    }, 200);
   }
 
   override onRemoved(): void {
@@ -73,6 +82,11 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
   }
 
   private doRefreshInputs() {
+    if (!this.graph) {
+      // Node not yet added to graph, skip
+      return;
+    }
+
     const canvas = app.canvas as TLGraphCanvas;
     let sort = this.properties?.[PROPERTY_SORT] || "position";
     let customAlphabet: string[] | null = null;
@@ -90,7 +104,13 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
     }
 
     const groups = [...FAST_GROUPS_SERVICE.getGroups(sort)];
-    
+
+    // Debug logging
+    console.log(
+      `[FastGroupsRemote] Found ${groups.length} groups:`,
+      groups.map((g) => g.title),
+    );
+
     // Apply custom alphabet sorting if needed
     if (customAlphabet?.length) {
       groups.sort((a, b) => {
@@ -171,11 +191,18 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
       groupsToCreate.push(group);
     }
 
+    // Debug logging
+    console.log(
+      `[FastGroupsRemote] Creating inputs for ${groupsToCreate.length} groups:`,
+      groupsToCreate.map((g) => g.title),
+    );
+
     // Create a map of current group titles
     const currentGroupTitles = new Set(groupsToCreate.map((g) => g.title));
     const newGroupInputMap = new Map<string, number>();
 
     // Build a map of existing inputs by their name (group title)
+    // Skip the base class's empty input (name "" from BaseAnyInputConnectedNode)
     const existingInputsByName = new Map<string, {index: number; input: any}>();
     for (let i = 0; i < this.inputs.length; i++) {
       const input = this.inputs[i];
@@ -184,6 +211,9 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
         existingInputsByName.set(groupTitle, {index: i, input: input});
       }
     }
+
+    // Debug logging
+    console.log(`[FastGroupsRemote] Existing inputs:`, Array.from(existingInputsByName.keys()));
 
     // Remove inputs for groups that no longer exist (in reverse order)
     const inputsToRemove: number[] = [];
@@ -209,7 +239,7 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
     for (const group of groupsToCreate) {
       const inputName = `Enable ${group.title}`;
       const existing = existingInputsByName.get(group.title);
-      
+
       if (existing) {
         // Input already exists, keep it at its current position (or move if needed)
         // For simplicity, we'll keep existing inputs where they are
@@ -228,7 +258,7 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
             break;
           }
         }
-        
+
         // Insert at the calculated position
         if (insertIndex >= this.inputs.length) {
           this.addInput(inputName, "BOOLEAN");
@@ -290,9 +320,10 @@ export abstract class BaseFastGroupsRemoteModeChanger extends BaseFastGroupsMode
 
     // Try to get the value from the serialized workflow
     if (rgthree.processingQueue) {
-      const serializedNode = rgthree.getNodeFromInitialGraphToPromptSerializedWorkflowBecauseComfyUIBrokeStuff(
-        connectedNode,
-      );
+      const serializedNode =
+        rgthree.getNodeFromInitialGraphToPromptSerializedWorkflowBecauseComfyUIBrokeStuff(
+          connectedNode,
+        );
       if (serializedNode?.widgets_values) {
         const value = serializedNode.widgets_values[0];
         if (typeof value === "boolean") {

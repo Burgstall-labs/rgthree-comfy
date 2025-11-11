@@ -1,4 +1,4 @@
-import { app } from "../../../scripts/app.js";
+import { app } from "scripts/app.js";
 import { getGraphDependantNodeKey, getGroupNodes, reduceNodesDepthFirst } from "../utils.js";
 class FastGroupsService {
     constructor() {

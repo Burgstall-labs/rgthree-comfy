@@ -1,5 +1,5 @@
 import { rgthreeApi } from "./rgthree_api.js";
-import { api } from "../../scripts/api.js";
+import { api } from "scripts/api.js";
 class BaseModelInfoService extends EventTarget {
     constructor() {
         super();
@@ -58,14 +58,14 @@ class LoraInfoService extends BaseModelInfoService {
     constructor() {
         super(...arguments);
         this.apiRefreshEventString = "rgthree-refreshed-loras-info";
-        this.modelInfoType = 'loras';
+        this.modelInfoType = "loras";
     }
 }
 class CheckpointInfoService extends BaseModelInfoService {
     constructor() {
         super(...arguments);
         this.apiRefreshEventString = "rgthree-refreshed-checkpoints-info";
-        this.modelInfoType = 'checkpoints';
+        this.modelInfoType = "checkpoints";
     }
 }
 export const LORA_INFO_SERVICE = new LoraInfoService();

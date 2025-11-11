@@ -107,7 +107,7 @@ async function updateCombinerToCollector(node: TLGraphNode) {
     // We now collect the links data, inputs and outputs, of the old node since these will be
     // lost when we remove it.
     const links: any[] = [];
-    const graph = (node.graph || app.graph);
+    const graph = node.graph || app.graph;
     for (const [index, output] of node.outputs.entries()) {
       for (const linkId of output.links || []) {
         const link: LLink = graph.links[linkId]!;

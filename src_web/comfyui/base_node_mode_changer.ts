@@ -76,7 +76,7 @@ export class BaseNodeModeChanger extends BaseAnyInputConnectedNode {
             newValue = this.widgets.every((w) => !w.value || w === widget);
           }
         }
-        changeModeOfNodes(linkedNode, (newValue ? this.modeOn : this.modeOff))
+        changeModeOfNodes(linkedNode, newValue ? this.modeOn : this.modeOff);
         widget.value = newValue;
       };
       widget.callback = () => {

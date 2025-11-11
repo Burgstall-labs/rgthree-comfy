@@ -69,7 +69,7 @@
 
 .rgthree-top-messages-container [type="warn"]::before,
 .rgthree-top-messages-container [type="success"]::before {
-  content: '⚠️';
+  content: "⚠️";
   display: inline-block;
   flex: 0 0 auto;
   font-size: 18px;
@@ -77,7 +77,7 @@
   line-height: 1;
 }
 .rgthree-top-messages-container [type="success"]::before {
-  content: '🎉';
+  content: "🎉";
 }
 
 .rgthree-top-messages-container a {
@@ -112,10 +112,9 @@
   z-index: 3 !important; /* This is set to 1, but goes under the multi-line inputs, so bump it. */
 }
 
-
-@import '../common/css/buttons.scss';
-@import '../common/css/dialog.scss';
-@import '../common/css/menu.scss';
+@import "../common/css/buttons.scss";
+@import "../common/css/dialog.scss";
+@import "../common/css/menu.scss";
 
 .rgthree-dialog.-settings {
   width: 100%;
@@ -167,7 +166,7 @@
   display: none;
 }
 .rgthree-dialog.-settings .fieldrow:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 .rgthree-dialog.-settings .fieldrow ~ .fieldrow span {
   font-weight: normal;
@@ -231,7 +230,6 @@
   margin-right: 16px;
 }
 
-
 .litegraph.litecontextmenu .litemenu-title .rgthree-contextmenu-title-rgthree-comfy,
 .litegraph.litecontextmenu .litemenu-entry.rgthree-contextmenu-item {
   display: flex;
@@ -284,17 +282,18 @@ rgthree-progress-bar {
   box-shadow:
     inset 0px -1px 0px rgba(0, 0, 0, 0.25),
     0px 1px 0px rgba(255, 255, 255, 0.125);
-
 }
 
 * ~ rgthree-progress-bar,
 .comfyui-body-bottom rgthree-progress-bar {
   box-shadow:
     0px -1px 0px rgba(0, 0, 0, 1),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.15), inset 0px -1px 0px rgba(0, 0, 0, 0.25), 0px 1px 0px rgba(255, 255, 255, 0.125);
+    inset 0px 1px 0px rgba(255, 255, 255, 0.15),
+    inset 0px -1px 0px rgba(0, 0, 0, 0.25),
+    0px 1px 0px rgba(255, 255, 255, 0.125);
 }
 
-body:not([style*=grid]):not([class*=grid]) {
+body:not([style*="grid"]):not([class*="grid"]) {
   rgthree-progress-bar {
     position: fixed;
     top: 0px;
@@ -305,7 +304,6 @@ body:not([style*=grid]):not([class*=grid]) {
     bottom: 0px;
   }
 }
-
 
 .rgthree-debug-keydowns {
   display: block;
@@ -318,7 +316,6 @@ body:not([style*=grid]):not([class*=grid]) {
   font-family: sans-serif;
   pointer-events: none;
 }
-
 
 .rgthree-comfy-about-badge-logo {
   width: 20px;

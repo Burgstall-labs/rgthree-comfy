@@ -36,8 +36,8 @@ class KeyEventService extends EventTarget {
     }
     handleKeyDownOrUp(e) {
         const key = e.key.toLocaleUpperCase();
-        if ((e.type === 'keydown' && this.downKeys[key] === true)
-            || (e.type === 'keyup' && this.downKeys[key] === undefined)) {
+        if ((e.type === "keydown" && this.downKeys[key] === true) ||
+            (e.type === "keyup" && this.downKeys[key] === undefined)) {
             return;
         }
         this.ctrlKey = !!e.ctrlKey;
@@ -47,7 +47,7 @@ class KeyEventService extends EventTarget {
         if (e.type === "keydown") {
             this.downKeys[key] = true;
             this.dispatchCustomEvent("keydown", { originalEvent: e });
-            if (this.shiftKey && key !== 'SHIFT') {
+            if (this.shiftKey && key !== "SHIFT") {
                 this.shiftDownKeys[key] = true;
             }
         }
@@ -58,7 +58,7 @@ class KeyEventService extends EventTarget {
             else {
                 delete this.downKeys[key];
             }
-            if (key === 'SHIFT') {
+            if (key === "SHIFT") {
                 for (const key in this.shiftDownKeys) {
                     delete this.downKeys[key];
                     delete this.shiftDownKeys[key];

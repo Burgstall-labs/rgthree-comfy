@@ -6,8 +6,6 @@ import {getGraphDependantNodeKey, getGroupNodes, reduceNodesDepthFirst} from "..
 
 type Vector4 = [number, number, number, number];
 
-
-
 /**
  * A service that keeps global state that can be shared by multiple FastGroupsMuter or
  * FastGroupsBypasser nodes rather than calculate it on it's own.
